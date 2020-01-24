@@ -1,17 +1,16 @@
+<?php
+require('includes/function.php');
+require('includes/header.php');
+$img_selects = find_paged(4, 12); ?>
+
+
+
+
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf8">
-    <title>Morgan Dawkins - Freelance Photograph - Home</title>
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display&display=swap" rel="stylesheet">
-</head>
+
 <body id="home">
-    <header>
-        <a href="index.html">
-            <img src="css/logo.png" alt="Morgan Dawkins - Freelance Photograph">
-        </a>
-    </header>
+    <?php require('includes/head.php'); ?>
     <main>
         <div id="hero">
             <h1>I love photography</h1>
@@ -37,47 +36,29 @@
                 </div><!-- end first column -->
                 <div class="column">
                     <p class="content-head pictures">
-                        <a class="btn" href="gallery.html" title="See all pictures">
+                        <a class="btn" href="gallery.php" title="See all pictures">
                             See all shots
                         </a>
                     </p>
                     <div id="pictures">
-                        <a href="detail.html" title="Picture 1">
-                            <img src="css/small.jpg" alt="Picture 1">
-                        </a>
-                        <a href="detail.html" title="Picture 2">
-                            <img src="css/small.jpg" alt="Picture 2">
-                        </a>
-                        <a href="detail.html" title="Picture 3">
-                            <img src="css/small.jpg" alt="Picture 3">
-                        </a>
-                        <a href="detail.html" title="Picture 4">
-                            <img src="css/small.jpg" alt="Picture 4">
-                        </a>
+                        <?php
+                        foreach ($img_selects as $img_select) { ?>
+                            <a href="detail.php?id=<?php echo $img_select['id'] ?>" title="<?php echo $img_select['title'] ?>">
+                                <img src=./images/small/<?php echo $img_select['slug'] . '.jpg'; ?> alt="Picture 1">
+                                <br>
+                            </a>
+                        <?php } ?>
                     </div>
                 </div><!-- end second column -->
             </div><!-- end row -->
             <p id="home-contact">
-                <a class="button" href="contact.html" title="Formulaire de contact">
+                <a class="button" href="contact.php" title="Formulaire de contact">
                     Contact me
                 </a>
             </p>
         </div>
     </main>
-    <footer>
-        <div class="container">
-            <ul>
-                <li>
-                    <a href="index.html" title="Photograph">Home</a>
-                </li>
-                <li>
-                    <a href="gallery.html" title="My shots">Gallery</a>
-                </li>
-                <li>
-                    <a href="contact.html" title="Contact form">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </footer>
+    <?php require('includes/footers.php'); ?>
 </body>
+
 </html>
